@@ -3,7 +3,6 @@
 Typing layer: 0
 
 Miscellaneous: 1
-![naut's U80-A keymap layer 1](https://i.imgur.com/FJom2Bu.jpg)
 
 Keyboard lockout: 2
 
