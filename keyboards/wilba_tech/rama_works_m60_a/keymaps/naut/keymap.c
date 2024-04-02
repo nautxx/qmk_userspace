@@ -1,3 +1,6 @@
+// Copyright 2024 Jason Barnachea (@nautxx)
+// SPDX-License-Identifier: GPL-2.0-or-later
+
 // naut's m60-a layout
 #include QMK_KEYBOARD_H
 
