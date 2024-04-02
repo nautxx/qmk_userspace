@@ -8,6 +8,7 @@
         ["jc65/v32a", "naut"],
         ["jc65/v32u4", "naut"],
         ["machine_industries/m4_a", "naut"],
-        ["hhkb/ansi/32u4", "naut"]
+        ["hhkb/ansi/32u4", "naut"],
+        ["wilba_tech/wt65_h3", "naut"]
     ]
 }
