@@ -9,11 +9,11 @@ Code in binary using this keymap.
 
 Make example for this keymap (after setting up your build environment):
 
-    make machine_industries/m4_a:naut
+    qmk compile -kb machine_industries/m4_a -km naut
 
 Flashing example for this keyboard:
 
-    make machine_industries/m4_a:naut:flash
+    qmk flash -kb machine_industries/m4_a -km naut
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
 

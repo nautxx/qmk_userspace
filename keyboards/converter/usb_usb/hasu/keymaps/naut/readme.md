@@ -14,15 +14,15 @@ Keyboard lockout
 
 HHKB style base layer. Fn1 layer to toggle capslock and control media on the arrow keys. Fn2 turns off key input so you can mash buttons to your heart's content.
 
-* Keymap Maintainer: [naut](https://github.com/nautxx)  
+* Keymap Maintainer: [naut](https://github.com/nautxx)
 
 Make example for this keyboard (after setting up your build environment):
 
-    make converter/usb_usb:naut
+    qmk new-keymap -kb converter/usb_usb -km naut
 
 Flashing example for this keyboard:
 
-    make converter/usb_usb:naut:flash
+    qmk flash -kb converter/usb_usb -km naut
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
 

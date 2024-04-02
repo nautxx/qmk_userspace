@@ -18,11 +18,11 @@ HHKB style base layer. Fn1 layer to toggle capslock and control media on the arr
 
 Make example for this keyboard (after setting up your build environment):
 
-    make wilba_tech/rama_works_u80_a:naut
+    qmk compile -kb wilba_tech/rama_works_u80_a -km naut
 
 Flashing example for this keyboard:
 
-    make wilba_tech/rama_works_u80_a:naut:flash
+    qmk flash -kb wilba_tech/rama_works_u80_a -km naut
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
 
