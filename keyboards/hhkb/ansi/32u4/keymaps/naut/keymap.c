@@ -1,184 +1,128 @@
-/*
- *  Naut: My keymap
+/*  -*-  eval: (turn-on-orgtbl); -*-
+ * naut's HHKB Layout
  */
-#include "keymap_common.h"
+#include QMK_KEYBOARD_H
 
+#define _BASE 0
+#define _HHKB 1
+#define _MAC 2
+#define _NUM 3
 
-#ifdef KEYMAP_SECTION_ENABLE
-const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] __attribute__ ((section (".keymap.keymaps"))) = {
-#else
-const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
-#endif
-    /* Layer 0: Default Layer with Oneshot left shift
-     * ,-----------------------------------------------------------.
-     * |Esc|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|  -|  =|  \|  `|
-     * |-----------------------------------------------------------|
-     * |Tab  |  Q|  W|  E|  R|  T|  Y|  U|  I|  O|  P|  [|  ]|Backs|
-     * |-----------------------------------------------------------|
-     * |Contro|  A|  S|  D|  F|  G|  H|  J|  K|  L|  ;|  '|Fn5     |
-     * |-----------------------------------------------------------|
-     * |Fn4     |  Z|  X|  C|  V|  B|  N|  M|  ,|  .|  /|Shift |Fn1|
-     * `-----------------------------------------------------------'
-     *       |Alt|Gui  |         Space         |Gui  |Alt|
-     *       `-------------------------------------------'
-     */
-    [0] =                                                                            \
-    KEYMAP( ESC,  1,   2,   3,   4,   5,   6,   7,   8,   9,   0,MINS, EQL,BSLS,GRV, \
-            TAB,  Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,LBRC,RBRC,BSPC,     \
-           LCTL,  A,   S,   D,   F,   G,   H,   J,   K,   L,SCLN,QUOT, FN5,          \
-            FN4,  Z,   X,   C,   V,   B,   N,   M,COMM, DOT,SLSH,RSFT, FN1,          \
-               LALT,LGUI,           SPC,               RGUI,RALT),
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
+    /* Layer 0: Default Layer
+     ,---------------------------------------------------------------------------.
+     |Esc  |1   |2   |3   |4   |5   |6   |7   |8   |9   |0   |-   |=   |\   |`   |
+     |---------------------------------------------------------------------------|
+     |Tab   |Q   |W   |E   |R   |T   |Y   |U   |I   |O   |P   |[   |]   |Backs   |
+     |---------------------------------------------------------------------------|
+     |Ctrl    |A   |S   |D   |F   |G   |H   |J   |K   |L   |;   |'   |Enter      |
+     |---------------------------------------------------------------------------|
+     |LShft     |Z   |X   |C   |V   |B   |N   |M   |,   |.   |/   |RShft    |HHKB|
+     `---------------------------------------------------------------------------'
+             |LAlt|LGui |             Space             |RGui |RAlt|
+             `-----------------------------------------------------'
+    */
+
+    [_BASE] = LAYOUT(
+        KC_ESC, KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   KC_MINS,KC_EQL, KC_BSLS, KC_GRV,
+        KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_LBRC,KC_RBRC,KC_BSPC,
+        KC_LCTL,KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_QUOT,KC_ENT,
+        KC_LSFT,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,KC_RSFT,MO(_HHKB),
+                KC_LALT,KC_LGUI,                KC_SPC,                         KC_RGUI,KC_RALT
+    ),
 
     /* Layer 1: HHKB mode (HHKB Fn)
-     * ,-----------------------------------------------------------.
-     * |Pwr| F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|F12|Ins|Del|
-     * |-----------------------------------------------------------|
-     * |Caps |   |   |   |   |   |   |   |Psc|Slk|Pus|Up |   |Backs|
-     * |-----------------------------------------------------------|
-     * |      |VoD|VoU|Mut|   |   |  *|  /|Hom|PgU|Lef|Rig|Enter   |
-     * |-----------------------------------------------------------|
-     * |Fn3     |   |   |   |   |   |  +|  -|End|PgD|Dow|Fn2   |   |
-     * `-----------------------------------------------------------'
-     *       |   |     |                       |     |   |
-     *       `-------------------------------------------'
-     */
-    [1] =                                                                              \
-    KEYMAP( PWR,  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11, F12, INS, DEL, \
-           CAPS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,PSCR,SLCK,PAUS,  UP,TRNS,BSPC,      \
-           TRNS,VOLD,VOLU,MUTE,TRNS,TRNS,PAST,PSLS,HOME,PGUP,LEFT,RGHT,PENT,           \
-            FN3,TRNS,TRNS,TRNS,TRNS,TRNS,PPLS,PMNS,END, PGDN,DOWN, FN2,TRNS,           \
-                TRNS,TRNS,          TRNS,               TRNS,TRNS),
-   
+     ,---------------------------------------------------------------------------.
+     |Pwr  |F1  |F2  |F3  |F4  |F5  |F6  |F7  |F8  |F9  |F10 |F11 |F12 |Ins |Del |
+     |---------------------------------------------------------------------------|
+     |Caps  |    |    |    |    |    |    |    |Psc |Slk |Pus |Up  |    |Backs   |
+     |---------------------------------------------------------------------------|
+     |        |VoD |VoU |Mut |    |    |*   |/   |Hom |PgU |Lef |Rig |Enter      |
+     |---------------------------------------------------------------------------|
+     |NUM       |    |    |    |    |    |+   |-   |End |PgD |Dow |MAC      |HHKB|
+     `---------------------------------------------------------------------------'
+             |    |     |                               |     |    |
+             `-----------------------------------------------------'
+    */
+
+    [_HHKB] = LAYOUT(
+        KC_PWR,  KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12, KC_INS, KC_DEL,
+        KC_CAPS, KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_PSCR,KC_SCRL,KC_PAUS,KC_UP,  KC_TRNS,KC_BSPC,
+        KC_TRNS, KC_VOLD,KC_VOLU,KC_MUTE,KC_TRNS,KC_TRNS,KC_PAST,KC_PSLS,KC_HOME,KC_PGUP,KC_LEFT,KC_RGHT,KC_PENT,
+        TG(_NUM),KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_PPLS,KC_PMNS,KC_END, KC_PGDN,KC_DOWN,KC_TRNS,MO(_MAC),
+                 KC_TRNS,KC_TRNS,                KC_TRNS,                        KC_TRNS,KC_TRNS
+    ),
+
     /* Layer 2: Mac Media
-    * ,-----------------------------------------------------------.
-     * |   |Dim|Brt|MCl|ApW|Des|Dsh|Rew|Ply|Fwd|Mut|VoD|VoU|   |   |
-     * |-----------------------------------------------------------|
-     * |     |Pr1|Pr2|   |   |   |   |   |   |   |   |   |   |     |
-     * |-----------------------------------------------------------|
-     * |      |   |   |   |   |   |   |   |   |   |   |   |        |
-     * |-----------------------------------------------------------|
-     * |        |   |   |   |   |   |   |   |   |   |   |Fn10  |   |
-     * `-----------------------------------------------------------'
-     *       |   |     |                       |     |   |
-     *       `-------------------------------------------'
-     */
-    [2] =                                                                              \
-    KEYMAP(TRNS, F14, F15, FN6, FN7, F11, F12,MRWD,MPLY,MFFD,MUTE,VOLD,VOLU,TRNS,TRNS, \
-           TRNS, FN8, FN9,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,      \
-           TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,           \
-           TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN10,TRNS,           \
-                TRNS,TRNS,          TRNS,               TRNS,TRNS),
-    
+     ,---------------------------------------------------------------------------.
+     |     |Dim |Brt |MCtl|AppW|Des |Dsh |Rew |Ply |Fwd |Mut |VoD |VoU |    |    |
+     |---------------------------------------------------------------------------|
+     |      |PrSc|PrAr|    |    |    |    |    |    |    |    |    |    |        |
+     |---------------------------------------------------------------------------|
+     |        |    |    |    |    |    |    |    |    |    |    |    |           |
+     |---------------------------------------------------------------------------|
+     |          |    |    |    |    |    |    |    |    |    |    |BASE     |    |
+     `---------------------------------------------------------------------------'
+             |    |     |                               |     |    |
+             `-----------------------------------------------------'
+    */
+
+    [_MAC] = LAYOUT(
+        KC_TRNS,KC_F14, KC_F15, KC_MCTL,KC_TRNS,KC_F11, KC_F12, KC_MRWD,KC_MPLY,KC_MFFD,KC_MUTE,KC_VOLD,KC_VOLU,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,DF(_BASE),KC_TRNS,
+                KC_TRNS,KC_TRNS,                KC_TRNS,                        KC_TRNS,KC_TRNS
+    ),
+
     /* Layer 3: Numpad
-     * ,-----------------------------------------------------------.
-     * |   |   |   |   |   |   |   |   |   |   |  /|  *|  -|   |   |
-     * |-----------------------------------------------------------|
-     * |NLck |   |   |   |   |   |   |   |   |  7|  8|  9|  +|     |
-     * |-----------------------------------------------------------|
-     * |      |   |   |   |   |   |   |   |   |  4|  5|  6|Enter   |
-     * |-----------------------------------------------------------|
-     * |        |   |   |   |   |   |   |   |  1|  2|  3|      |   |
-     * `-----------------------------------------------------------'
-     *       |   |     |                       |    0|  .|
-     *       `-------------------------------------------'
-     */
-    [3] =                                                                              \
-    KEYMAP(TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,PSLS,PAST,PMNS,TRNS,TRNS, \
-           NLCK,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,  P7,  P8,  P9,PPLS,TRNS,      \
-           TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,  P4,  P5,  P6,PENT,           \
-           TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,  P1,  P2,  P3,TRNS,TRNS,           \
-                TRNS,TRNS,          TRNS,                 P0,PDOT),
-};
+     ,---------------------------------------------------------------------------.
+     |     |    |    |    |    |    |    |    |    |    |/   |*   |-   |    |    |
+     |---------------------------------------------------------------------------|
+     |NLck  |    |    |    |    |    |    |    |Psc |Slk |Pus |Up  |+   |        |
+     |---------------------------------------------------------------------------|
+     |        |    |    |    |    |    |    |    |    |4   |5   |6   |Enter      |
+     |---------------------------------------------------------------------------|
+     |          |    |    |    |    |    |    |    |1   |2   |3   |         |    |
+     `---------------------------------------------------------------------------'
+             |    |     |                               |0    |.   |
+             `-----------------------------------------------------'
+    */
 
-/* 
- *  ID for user defined functions 
- */   
-enum function_id {
-    LSHIFT_LPAREN,
-};
+    [_NUM] = LAYOUT(
+        KC_TRNS, KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_PSLS,KC_PAST,KC_PMNS,KC_TRNS,KC_TRNS,
+        KC_NUM,  KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_P7,  KC_P8,  KC_P9,  KC_PPLS,KC_TRNS,
+        KC_TRNS, KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_P4,  KC_P5,  KC_P6,  KC_PENT,
+        KC_TRNS, KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_P1,  KC_P2,  KC_P3,  KC_TRNS,KC_TRNS,
+                 KC_TRNS,KC_TRNS,                KC_TRNS,                        KC_P0,  KC_PDOT
+    )};
 
-enum macro_id {
-    MAC_PRNT_SCRN,
-    MAC_PRNT_AREA,
-};
-    
-/*
- *  Fn action definition
- */   
-#ifdef KEYMAP_SECTION_ENABLE
-const action_t fn_actions[] __attribute__ ((section (".keymap.fn_actions"))) = {
-#else
-const action_t fn_actions[] PROGMEM = {
-#endif
-    [0] = ACTION_DEFAULT_LAYER_SET(0),            // Default layer
-    [1] = ACTION_LAYER_MOMENTARY(1),              // HHKB Mode (HHKB Fn) Layer
-    [2] = ACTION_LAYER_MOMENTARY(2),              // Mac Media Layer
-    [3] = ACTION_LAYER_TOGGLE(3),                 // Numpad Layer
-    [4] = ACTION_MODS_ONESHOT(MOD_LSFT),          // Oneshot Shift
-    [5] = ACTION_MODS_TAP_KEY(MOD_RCTL, KC_ENT),  // RControl with tap Enter
-    [6] = ACTION_MODS_KEY(MOD_LCTL, KC_UP),       // Mission Control Button
-    [7] = ACTION_MODS_KEY(MOD_LCTL, KC_DOWN),     // Application Windows Button
-    [8] = ACTION_MACRO(MAC_PRNT_SCRN),            // Macro: Save picture of screen
-    [9] = ACTION_MACRO(MAC_PRNT_AREA),            // Macro: Save picture of selected area
-    [10] = ACTION_LAYER_SET(0, ON_RELEASE),       // Force default layer on release
-//  [x] = ACTION_FUNCTION_TAP(LSHIFT_LPAREN),     // Function: LShift with tap '(' 
+    /*
+        Keycode for user defined macros
+    */
+    enum custom_keycodes {
+        MAC_APPW,
+        MAC_PSCR,
+        MAC_PAREA,
+    };
 
-};
-    
-/*
- * Macro definition
- */  
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
-{
-    switch (id) {
-        case MAC_PRNT_SCRN:
-            return (record->event.pressed ?
-                    MACRO(D(LGUI), D(LSHIFT), T(3), END) :
-                    MACRO(U(LSHIFT), U(LGUI), END));
-        case MAC_PRNT_AREA:
-            return (record->event.pressed ?
-                    MACRO(D(LGUI), D(LSHIFT), T(4), END) :
-                    MACRO(U(LSHIFT), U(LGUI), END));
-    }
-    return MACRO_NONE;
-}
-    
-/*
- * User defined action function
- */ 
-void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
-{
-    if (record->event.pressed) dprint("P"); else dprint("R");
-    dprintf("%d", record->tap.count);
-    if (record->tap.interrupted) dprint("i");
-    dprint("\n");
-
-    switch (id) {
-        case LSHIFT_LPAREN: // Shift parentheses example: LShft + tap '('
-                            // http://stevelosh.com/blog/2012/10/a-modern-space-cadet/#shift-parentheses
-                            // http://geekhack.org/index.php?topic=41989.msg1304899#msg1304899
-            if (record->event.pressed) {
-                if (record->tap.count > 0 && !record->tap.interrupted) {
-                    if (record->tap.interrupted) {
-                        dprint("tap interrupted\n");
-                        register_mods(MOD_BIT(KC_LSHIFT));
-                    }
-                } else {
-                    register_mods(MOD_BIT(KC_LSHIFT));
-                }
-            } else {
-                if (record->tap.count > 0 && !(record->tap.interrupted)) {
-                    add_weak_mods(MOD_BIT(KC_LSHIFT));
-                    send_keyboard_report();
-                    register_code(KC_9);
-                    unregister_code(KC_9);
-                    del_weak_mods(MOD_BIT(KC_LSHIFT));
-                    send_keyboard_report();
-                    record->tap.count = 0;  // ad-hoc: cancel tap
-                } else {
-                    unregister_mods(MOD_BIT(KC_LSHIFT));
-                }
+    /*
+        User defined macro definitions
+    */
+    bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+        if (record->event.pressed) {
+            switch (keycode) {
+                case MAC_APPW:
+                    tap_code16(C(KC_DOWN));  // Ctrl + Down
+                    return false;
+                case MAC_PSCR: // Captures screen on macOS
+                    tap_code16(C(S(KC_3))); // ⌘ + ⇧ + 3
+                    return false;
+                case MAC_PAREA: // Captures selected area on macOS
+                    tap_code16(C(S(KC_4))); // ⌘ + ⇧ + 4
+                    return false;
             }
-            break;
-    }
-}
+        }
+        return true;
+    };
