@@ -56,9 +56,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* Layer 2: Mac Media
      ,---------------------------------------------------------------------------.
-     |     |Dim |Brt |MCtl|    |Des |Dsh |Rew |Ply |Fwd |Mut |VoD |VoU |    |    |
+     |     |Dim |Brt |MCtl|AppW|Des |Dsh |Rew |Ply |Fwd |Mut |VoD |VoU |    |    |
      |---------------------------------------------------------------------------|
-     |      |    |    |    |    |    |    |    |    |    |    |    |    |        |
+     |      |PrSc|PrAr|    |    |    |    |    |    |    |    |    |    |        |
      |---------------------------------------------------------------------------|
      |        |    |    |    |    |    |    |    |    |    |    |    |           |
      |---------------------------------------------------------------------------|
@@ -97,3 +97,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS, KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_P1,  KC_P2,  KC_P3,  KC_TRNS,KC_TRNS,
                  KC_TRNS,KC_TRNS,                KC_TRNS,                        KC_P0,  KC_PDOT
     )};
+
+    /*
+        Keycode for user defined macros
+    */
+    enum custom_keycodes {
+        MAC_APPW,
+        MAC_PSCR,
+        MAC_PAREA,
+    };
+
+    /*
+        User defined macro definitions
+    */
+    bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+        if (record->event.pressed) {
+            switch (keycode) {
+                case MAC_APPW:
+                    tap_code16(C(KC_DOWN));  // Ctrl + Down
+                    return false;
+                case MAC_PSCR: // Captures screen on macOS
+                    tap_code16(C(S(KC_3))); // ⌘ + ⇧ + 3
+                    return false;
+                case MAC_PAREA: // Captures selected area on macOS
+                    tap_code16(C(S(KC_4))); // ⌘ + ⇧ + 4
+                    return false;
+            }
+        }
+        return true;
+    };
