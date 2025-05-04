@@ -1,5 +1,5 @@
 /*  -*-  eval: (turn-on-orgtbl); -*-
- * naut's HHKB Layout
+    naut's HHKB Layout
  */
 #include QMK_KEYBOARD_H
 
@@ -7,6 +7,23 @@
 #define _HHKB 1
 #define _MAC 2
 #define _NUM 3
+
+/*
+    Keycode for user defined macros
+*/
+enum custom_keycodes {
+    MAC_APP_WIN = SAFE_RANGE,
+    MAC_PRNT_SCR,
+    MAC_PRNT_AREA,
+};
+
+/*
+    Key aliases for user defined macros. These are the keycodes that will be
+    used in the keymap to refer to the user defined macros.
+*/
+#define APPW MAC_APP_WIN
+#define PSCR MAC_PRNT_SCR
+#define PAREA MAC_PRNT_AREA
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -97,23 +114,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS, KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_P1,  KC_P2,  KC_P3,  KC_TRNS,KC_TRNS,
                  KC_TRNS,KC_TRNS,                KC_TRNS,                        KC_P0,  KC_PDOT
     )};
-
-    /*
-        Keycode for user defined macros
-    */
-    enum custom_keycodes {
-        MAC_APP_WIN = SAFE_RANGE,
-        MAC_PRNT_SCR,
-        MAC_PRNT_AREA,
-    };
-
-    /*
-        Key aliases for user defined macros. These are the keycodes that will be
-        used in the keymap to refer to the user defined macros.
-    */
-    #define APPW MAC_APP_WIN
-    #define PSCR MAC_PRNT_SCR
-    #define PAREA MAC_PRNT_AREA
 
     /*
         User defined macro definitions
