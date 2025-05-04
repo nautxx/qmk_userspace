@@ -69,8 +69,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
 
     [_MAC] = LAYOUT(
-        KC_TRNS,KC_F14, KC_F15, KC_MCTL,KC_TRNS,KC_F11, KC_F12, KC_MRWD,KC_MPLY,KC_MFFD,KC_MUTE,KC_VOLD,KC_VOLU,KC_TRNS,KC_TRNS,
-        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_F14, KC_F15, KC_MCTL,APPW,   KC_F11, KC_F12, KC_MRWD,KC_MPLY,KC_MFFD,KC_MUTE,KC_VOLD,KC_VOLU,KC_TRNS,KC_TRNS,
+        KC_TRNS,PSCR,   PAREA,  KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
         KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
         KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,DF(_BASE),KC_TRNS,
                 KC_TRNS,KC_TRNS,                KC_TRNS,                        KC_TRNS,KC_TRNS
@@ -102,10 +102,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         Keycode for user defined macros
     */
     enum custom_keycodes {
-        MAC_APPW,
-        MAC_PSCR,
-        MAC_PAREA,
+        MAC_APP_WIN = SAFE_RANGE,
+        MAC_PRNT_SCR,
+        MAC_PRNT_AREA,
     };
+
+    /*
+        Key aliases for user defined macros. These are the keycodes that will be
+        used in the keymap to refer to the user defined macros.
+    */
+    #define APPW MAC_APP_WIN
+    #define PSCR MAC_PRNT_SCR
+    #define PAREA MAC_PRNT_AREA
 
     /*
         User defined macro definitions
@@ -113,16 +121,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->event.pressed) {
             switch (keycode) {
-                case MAC_APPW:
+                case MAC_APP_WIN:
                     tap_code16(C(KC_DOWN));  // Ctrl + Down
                     return false;
-                case MAC_PSCR: // Captures screen on macOS
+                case MAC_PRNT_SCR: // Captures screen on macOS
                     tap_code16(C(S(KC_3))); // ⌘ + ⇧ + 3
                     return false;
-                case MAC_PAREA: // Captures selected area on macOS
+                case MAC_PRNT_AREA: // Captures selected area on macOS
                     tap_code16(C(S(KC_4))); // ⌘ + ⇧ + 4
                     return false;
             }
         }
         return true;
-    };
+    }
