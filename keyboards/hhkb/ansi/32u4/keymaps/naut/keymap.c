@@ -7,6 +7,7 @@
 #define _HHKB 1
 #define _MAC 2
 #define _NUM 3
+#define _MASH 4
 
 /*
     Keycode for user defined macros
@@ -68,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_CAPS, KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_PSCR,KC_SCRL,KC_PAUS,KC_UP,  KC_TRNS,KC_BSPC,
         KC_TRNS, KC_VOLD,KC_VOLU,KC_MUTE,KC_TRNS,KC_TRNS,KC_PAST,KC_PSLS,KC_HOME,KC_PGUP,KC_LEFT,KC_RGHT,KC_PENT,
         TG(_NUM),KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_PPLS,KC_PMNS,KC_END, KC_PGDN,KC_DOWN,KC_TRNS,MO(_MAC),
-                 KC_TRNS,KC_TRNS,                KC_TRNS,                        KC_TRNS,KC_TRNS
+                 KC_TRNS,KC_TRNS,                TG(_MASH),                      KC_TRNS,KC_TRNS
     ),
 
     /* Layer 2: Mac Media
@@ -113,6 +114,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_P4,  KC_P5,  KC_P6,  KC_PENT,
         KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_P1,  KC_P2,  KC_P3,  KC_TRNS,KC_TRNS,
                 KC_TRNS,KC_TRNS,                KC_TRNS,                        KC_P0,  KC_PDOT
+    ),
+
+    /* Layer 4: Button mash layer
+     ,---------------------------------------------------------------------------.
+     |BASE |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
+     |---------------------------------------------------------------------------|
+     |      |    |    |    |    |    |    |    |    |    |    |    |    |        |
+     |---------------------------------------------------------------------------|
+     |        |    |    |    |    |    |    |    |    |    |    |    |           |
+     |---------------------------------------------------------------------------|
+     |          |    |    |    |    |    |    |    |    |    |    |         |    |
+     `---------------------------------------------------------------------------'
+             |    |     |                               |     |    |
+             `-----------------------------------------------------'
+    */
+
+    [_MASH] = LAYOUT(
+        TO(_BASE),KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,
+        KC_NO,    KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,
+        KC_NO,    KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,
+        KC_NO,    KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,
+                  KC_NO,  KC_NO,                  KC_NO,                          KC_NO,  KC_NO
     )};
 
     /*
