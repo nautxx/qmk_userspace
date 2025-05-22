@@ -4,6 +4,13 @@
 // Naut's layout for WT60-H1 Hibi June Keyboard
 #include QMK_KEYBOARD_H
 
+//  Keycode for user defined macros
+enum custom_keycodes {
+    APP_WIN = SAFE_RANGE,
+    PRTSCRN,
+    PRTAREA,
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	// Layer 0: Default layer
@@ -46,27 +53,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
         KC_NO,   KC_NO,   KC_NO,                              KC_NO,                     KC_NO,   KC_NO,   KC_NO,   KC_NO)};
 
-//  Keycode for user defined macros
-enum custom_keycodes {
-    APP_WIN = SAFE_RANGE,
-    PRTSCRN,
-    PRTAREA,
-}
-
 //  User defined macro definitions
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
-            case APP_WIN: // Application Window on macOS
-                tap_code16(C(KC_DOWN));  // Ctrl + Down
-                return false;
-            case PRTSCRN: // Captures screen on macOS
-                tap_code16(C(S(KC_3))); // ⌘ + ⇧ + 3
-                return false;
-            case PRTAREA: // Captures selected area on macOS
-                tap_code16(C(S(KC_4))); // ⌘ + ⇧ + 4
-                return false;
+        case APP_WIN: // Application Window on macOS
+            tap_code16(C(KC_DOWN));  // Ctrl + Down
+            return false;
+        case PRTSCRN: // Captures screen on macOS
+            tap_code16(C(S(KC_3))); // ⌘ + ⇧ + 3
+            return false;
+        case PRTAREA: // Captures selected area on macOS
+            tap_code16(C(S(KC_4))); // ⌘ + ⇧ + 4
+            return false;
         }
     }
     return true;
-}
+};
